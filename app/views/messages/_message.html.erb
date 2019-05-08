@@ -1,0 +1,16 @@
+
+<div class="event">
+    <div class="label">
+<!--      <img src="/images/avatar/small/elliot.jpg">-->
+    </div>
+    <div class="content">
+      <div class="summary">
+        <a class="user">
+          <%= link_to message.user.username.capitalize, user_path(message.user) %> :
+        </a> <%= message.body %>
+        <div class="date">
+          <small><i><%= time_ago_in_words(message.updated_at) %></i></small>
+        </div>
+      </div>
+    </div>
+  </div>
