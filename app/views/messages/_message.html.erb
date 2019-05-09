@@ -1,16 +1,29 @@
-
-<div class="event">
-    <div class="label">
-<!--      <img src="/images/avatar/small/elliot.jpg">-->
-    </div>
+<% if current_user.id != message.user.id %>
+  <div class="comment">
+    <a class="avatar">
+      <%= image_tag "matt.jpg" %>
+    </a>
     <div class="content">
-      <div class="summary">
-        <a class="user">
-          <%= link_to message.user.username.capitalize, user_path(message.user) %> :
-        </a> <%= message.body %>
-        <div class="date">
-          <small><i><%= time_ago_in_words(message.updated_at) %></i></small>
-        </div>
+      <a class="author">
+        <%= link_to message.user.username.capitalize, user_path(message.user) %>
+      </a>
+      <div class="metadata">
+        <span class="date"><%= time_ago_in_words(message.updated_at) %></span>
+      </div>
+      <div class="text">
+        <%= message.body %>
       </div>
     </div>
   </div>
+<% else %>
+    <div class="comment" style="text-align: right">
+    <div class="content">
+      <div class="text">
+        <%= message.body %>
+      </div>
+        <div class="actions">
+        <small class="date"><%= message.updated_at.strftime("%I : %M %P") %></small>
+      </div>
+    </div>
+  </div>
+<% end %>
